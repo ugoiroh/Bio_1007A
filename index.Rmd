@@ -1,0 +1,18 @@
+---
+title: "Bio_1007A"
+author: "Ugo Iroh"
+date: "2023-01-10"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github 
+    
+---
+
+## Assignments 
+
+How to create links
+
+[Index](index.html)
+
+[Website Link](https://www.amazon.com)
