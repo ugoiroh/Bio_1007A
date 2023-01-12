@@ -9,44 +9,7 @@ output:
      
 ---
 
-
-![](https://img.freepik.com/free-photo/purple-osteospermum-daisy-flower_1373-16.jpg?w=2000)   
-
 # Assignments 
 
-I think R is really **fun** but definitely can be *frustrating*. I think R is **really** useful, especially in science and research, and think it can be beneficial to those learning it for the *first* time. *However*, if you're not careful with your code, you can definitely run into some **annoying** problems. **Thankfully**, there are a lot of free resources online that can help **troubleshoot**.
+[Assignment 2](Assignment2.html)
 
-`Below, I have attched some helpful links`.
-
-[Index](index.html)
-
-[Website Link](https://www.amazon.com)
-
-Letter        | Name        |     Y/N
-------------- | ----------- | ------------
-A             | Apple       |       Y
-B             | Bread       |       Y
-C             | Candy       |       Y
-
-$$x^2 + b^2 = c^2$$
-$$y=mx+b$$ 
-`What is 3x^2+4x+5=25?`
-
-A C~11~ is a type of compound most commonly found in? 
-
-## Heading 2
-
-### Heading 3
-
-#### Heading 4
-
-##### Heading 5
-
-Random Grocery List
-
-1. Apples  
-2. Bacon   
-    + two pounds    
-3. Tissues   
-    + four packs   
-  
