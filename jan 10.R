@@ -1,0 +1,17 @@
+git --> keeping control of files; takes snapshots of files.  
+types of files (also good for version control):   
+  -plain text
+-R scripts
+-markdown (.md/.Rmd)
+* type of its formatting language used in R (.Rmd)
+-html
+-LaTEx
+
+bad for version control in github bc you can't keep track of changes:
+  -pdfs
+  -videos/pics
+  -word doc
+  
+  note: we're always commit changes (keeps track of changes) and changing files until we're ready to push 
+  pushing --> transfering changes from local repo (computer) to Github repo
+  we can also pull. to pull is to make changes from Github repo to local repo

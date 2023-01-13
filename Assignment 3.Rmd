@@ -1,0 +1,76 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+---
+title: "Assignment 3"
+author: "Ugo Iroh"
+date: "2023-01-12"
+output: html_document
+
+# Assignment 3
+
+`Question One`  
+```{r}
+x <- 1.1
+a <- 2.2
+b <- 3.3
+
+z <- x^a^b
+print(z)
+```
+
+```{r}
+z <- ((x^a))^(b)
+print(z)
+```
+```{r}
+z <- (3*x^(3))+(2*x^(2))+(1)
+print(z)
+```
+`Question Two`
+```{r}
+z <- c(1,2,3,4,5,6,7,8)
+print(z)
+z <- c(seq(from = 1, to = 8,), seq(from = 7, to = 1)) 
+print(z)
+```
+```{r}
+z <- c(1, 2, 3, 4, 5)
+print(z)
+z <- c(rep(1, each = 1), rep (2, each = 2), rep(3, each = 3), rep(4, each = 4), rep(5, each = 5)) 
+print(z)
+```
+```{r}
+z <- c(rep(5, each = 1), rep(4, each = 2), rep(3, each = 3), rep(2, each = 4), rep(1, each = 5)) 
+print(z)
+```
+`Question Three`
+```{r}
+queue <- c("sheep", "fox", "owl", "ant")
+print(queue)
+#the serpent arrives and gets in the back of the line. 
+story_vec <- c("sheep", "fox", "owl", "ant")
+story_vec <- c(story_vec[1:4], "serpent")
+print(story_vec)
+
+#the sheep enters the club (so disappears from the line).  
+story_vec[-c(1)]
+
+#the donkey arrives and talks his way to the front of the line. 
+story_vec <- c("fox", "owl", "ant", "serpent")
+story_vec <- c("donkey", story_vec[1:4])
+print(story_vec)
+
+#the serpent gets impatient and leaves;
+story_vec <- story_vec[-c(5)]
+print(story_vec)
+
+#the aphid arrives and the ant invites him to cut in line (hint: check out the append function).
+story_vec <- append(story_vec,"aphid", after = 3)
+print(story_vec)
+
+#Finally, determine the position of the aphid in the line (hint: use the which function).  
+which(story_vec=="aphid")
+```
