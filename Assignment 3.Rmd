@@ -74,3 +74,4 @@ print(story_vec)
 #Finally, determine the position of the aphid in the line (hint: use the which function).  
 which(story_vec=="aphid")
 ```
+ 
