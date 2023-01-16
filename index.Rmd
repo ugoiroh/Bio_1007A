@@ -4,14 +4,18 @@ author: "Ugo Iroh"
 date: "2023-01-10"
 output:
   prettydoc::html_pretty:
-    theme: HPSTR
+    theme: leonids 
     highlight: github 
      
 ---
 
+![](https://web.pa.msu.edu/people/frenchj/moon/moon-6day-1822.jpg) 
+
 # Assignments 
 
-[Assignment 2](Assignment2.html)
+[Assignment 1](Notes-on-10-Jan-2023.html) 
 
-[Assignment 3](Assignment-3.html)
+[Assignment 2](Assignment2.html) 
+
+[Assignment 3](Assignment-3.html) 
 
