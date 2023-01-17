@@ -392,28 +392,28 @@ print(z)</code></pre>
 print(queue)</code></pre>
 <pre><code>## [1] &quot;sheep&quot; &quot;fox&quot;   &quot;owl&quot;   &quot;ant&quot;</code></pre>
 <pre class="r"><code>#the serpent arrives and gets in the back of the line. 
-story_vec &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
-story_vec &lt;- c(story_vec[1:4], &quot;serpent&quot;)
-print(story_vec)</code></pre>
+queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+queue &lt;- c(queue[1:4], &quot;serpent&quot;)
+print(queue)</code></pre>
 <pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
 <pre class="r"><code>#the sheep enters the club (so disappears from the line).  
-story_vec[-c(1)]</code></pre>
+queue[-c(1)]</code></pre>
 <pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
 <pre class="r"><code>#the donkey arrives and talks his way to the front of the line. 
-story_vec &lt;- c(&quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;, &quot;serpent&quot;)
-story_vec &lt;- c(&quot;donkey&quot;, story_vec[1:4])
-print(story_vec)</code></pre>
+queue &lt;- c(&quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;, &quot;serpent&quot;)
+queue &lt;- c(&quot;donkey&quot;, queue[1:4])
+print(queue)</code></pre>
 <pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
 <pre class="r"><code>#the serpent gets impatient and leaves;
-story_vec &lt;- story_vec[-c(5)]
-print(story_vec)</code></pre>
+queue &lt;- queue[-c(5)]
+print(queue)</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
 <pre class="r"><code>#the aphid arrives and the ant invites him to cut in line (hint: check out the append function).
-story_vec &lt;- append(story_vec,&quot;aphid&quot;, after = 3)
-print(story_vec)</code></pre>
+queue &lt;- append(queue,&quot;aphid&quot;, after = 3)
+print(queue)</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
 <pre class="r"><code>#Finally, determine the position of the aphid in the line (hint: use the which function).  
-which(story_vec==&quot;aphid&quot;)</code></pre>
+which(queue==&quot;aphid&quot;)</code></pre>
 <pre><code>## [1] 4</code></pre>
 </div>
 

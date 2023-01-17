@@ -21,4 +21,4 @@ output:
 
 # Weekly Assignments
 
-
+[Weekly Assignment 1](Weekly-Assignment-1.html) 

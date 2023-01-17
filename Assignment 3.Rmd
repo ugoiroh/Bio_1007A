@@ -51,27 +51,27 @@ print(z)
 queue <- c("sheep", "fox", "owl", "ant")
 print(queue)
 #the serpent arrives and gets in the back of the line. 
-story_vec <- c("sheep", "fox", "owl", "ant")
-story_vec <- c(story_vec[1:4], "serpent")
-print(story_vec)
+queue <- c("sheep", "fox", "owl", "ant")
+queue <- c(queue[1:4], "serpent")
+print(queue)
 
 #the sheep enters the club (so disappears from the line).  
-story_vec[-c(1)]
+queue[-c(1)]
 
 #the donkey arrives and talks his way to the front of the line. 
-story_vec <- c("fox", "owl", "ant", "serpent")
-story_vec <- c("donkey", story_vec[1:4])
-print(story_vec)
+queue <- c("fox", "owl", "ant", "serpent")
+queue <- c("donkey", queue[1:4])
+print(queue)
 
 #the serpent gets impatient and leaves;
-story_vec <- story_vec[-c(5)]
-print(story_vec)
+queue <- queue[-c(5)]
+print(queue)
 
 #the aphid arrives and the ant invites him to cut in line (hint: check out the append function).
-story_vec <- append(story_vec,"aphid", after = 3)
-print(story_vec)
+queue <- append(queue,"aphid", after = 3)
+print(queue)
 
 #Finally, determine the position of the aphid in the line (hint: use the which function).  
-which(story_vec=="aphid")
+which(queue=="aphid")
 ```
  
