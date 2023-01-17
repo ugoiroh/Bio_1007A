@@ -1,0 +1,95 @@
+---
+title: "Weekly Assignment 1"
+author: "Ugo Iroh"
+date: "2023-01-16"
+output: html_document
+---
+### How to Set Up a GitHub web page in RStudio    
+
+**Step 1: Download R and RStudio**
+
+1. Go to [this website](https://posit.co/download/rstudio-desktop/) on your **computer**. Here, you will be able to download a version of R and RStudio that matches your computer’s operating system. You can't substitute one for the other, so make sure to download both!
+
+**Step 2: Download Xcode** 
+
+1. Xcode is a necessary package that we will use to download software like git (skip to Step 3 for an explanation of what this is). Xcode is Apple's integrated development environment (IDE). Essentially, an IDE is a software application that helps programmers develop software code efficiently. The Homebrew package manager makes it easy to install and update applications and utilities on a Mac computer. If you have a windows computer, the steps are slightly different, but the two main things that we will be doing is downloading Xcode and Homebrew. **I strongly suggest that your laptop software is up-to-date to prevent running into any difficulties.** 
+
+2. Xcode is needed for Homebrew (skip to Step 3 for an explanation of what this is) to work. Thus, we must first download Xcode. **DO NOT** download the Xcode app on the App store. It is a huge file that will make you pull your hair out. Instead, go to [this website](https://idmsa.apple.com/IDMSWebAuth/signin.html?path=%2Fdownload%2Fall%2F%3Fq%3DXcode&appIdKey=891bd3417a7776362562d2197f89480a8547b108fd934911bcbea0110d07f757&rv=0). It's a smaller file since we only want the command line tools. You will be asked to enter your Apple credentials (it's safe, I promise). 
+
+3. Please select the "Command Line Tools for Xcode" option. It is probably the first option that you see on the page. Xcode Command Line Tools are tools for software developers that run on the command line, in the Terminal (skip to Step 5 for the explanation of what this is) application. Now, click the download button. It should probably take anywhere from 5-10 minutes. Have patience :). 
+
+4. To know that Xcode has successfully been downloaded, you can click the magnifying glass on the right-hand side of your laptop and type in 'xcode command line tools'. A dmg file should pop up. If not, try redownloading the package or restart your computer.
+
+**Step 3: Download Homebrew**
+
+1. Homebrew is a necessary package, like Xcode, that we will use to download software like git. Please enter https://brew.sh/ into your web page. If that doesn't work, you can also access the site by clicking [me](https://brew.sh/).   
+
+2. The Homebrew homepage has pretty clear download instructions. Paste the provided code into the Terminal of your macOS or shell prompt. To access Terminal, click the magnifying class on the right-hand corner of your computer. Now, enter `Terminal`. You'll be met with something that looks like this:         
+
+![](https://jumpcloud.com//wp-content/uploads/2022/03/mac-command-line-3.png).  
+
+3. Type in the code from the [Homebrew website](https://brew.sh/) and press enter. The whole download process should take anywhere from 5-15 minutes. For other installation options, you can access [this website](https://docs.brew.sh/Installation). 
+
+4. If the Homebrew install doesn't work, you can download git on the web by accessing this web page address: https://git-scm.com/downloads.
+
+5. Lastly, type `brew install git` into your Terminal.
+
+**Step 4: Create a GitHub Account**  
+
+1. Hop on to your web browser and type https://github.com/. It should lead you to [this webpage](https://github.com/). FYI, GitHub is great for storing, tracking, and collaborating on software projects. 
+
+2. Now make an account! Enter your email, create a username and password, and follow the steps to verify your email. 
+
+3. Once you are able to log into your new GitHub account, we will be connecting RStudio to Git and GitHub.
+
+**Step 5: Connect RStudio to Git and GitHub** 
+
+It is crucial to verify that RStudio can issue Git commands on your behalf. A key aspect of GitHub is maintaining your repositories. Repositories are files that we maintain in order to keep track of our projects. In the following steps, we will be making a test repository and ensuring that Git is able to talk to R and RStudio, and your computer.   
+
+1. Login to https://github.com. Near “Repositories”, click the big green “New” button. Or, if you are on your own profile page, click on “Repositories”, then click the big green “New” button. Because we are practicing, please name your repository "trialrepo". In other instances, you want to make sure that your repository name is specific and clear. In your description, you can add “Trial Repository for testing my Git/GitHub setup” or similar. Under "Initialize this repository with", click "Add a README file". Under "choose a licence", select the MIT license. Save the repository. 
+
+2. After you save your repository, you will need to create a Personal Access Token (PAT).   
+  + Click your profile icon on the upper right corner (next to bell and + signs) 
+  + Go to Settings   
+  + On the left side of the screen, scroll all the way down and choose Developer settings 
+  + On the left, click Personal access tokens and choose Tokens (**classic**) 
+  + Click Generate new token and choose the Classic option 
+  + Write “ ” for the Note 
+  + Under Expiration, choose **Custom** - and set the expiration date to 12/31/2023. 
+
+Treat this like a password! You will not be able to access your PAT if you exit the page, so copy the code and save it somewhere safe! 
+
+3. We can call an R function to explicitly store your PAT. For this to work, we must do something in command line or in RStudio that triggers a credential challenge. The R package that we will use to access the Git credential store is [credentials](https://docs.ropensci.org/credentials/). Install the credentials package by typing this in the console: `install.packages("credentials")`. Next, run these codes:
+
+`git config --global user.email "put github email here"`
+`git config --global user.name "put your name here"`
+`credentials::set_github_pat("put PAT here")` 
+
+**Note: Thankfully, you will not need to do this step every time you log into GitHub. However, it is a step you will have to take every time you make a new repository.**
+
+**Step 6: Clone the test GitHub repository to your computer via RStudio**
+
+1. Access RStudio via Terminal. In RStudio, click "New Project" on the right-hand side. From there, go to: Version Control > Git. In “Repository URL”, paste the URL of your new GitHub repository. It will be something like this https://github.com/ugoiroh/Bio_1007A.git. To access your repository URL, go to https://github.com/, on the left-hand side go to the repository you just made, click the green "Code" button, then copy the link. 
+
+2. Now that you've copied the link and pasted it to the "Repository URL" space, name the project repository **which coincides with the GitHub repo name**. Click "Create Project". 
+
+**Step 7: Did I Do Everything Correctly?**
+
+From RStudio, modify the README.md file by adding the line like “this is a test line”. Save your changes.
+
+Commit these changes to your local repo. How?
+
+1. From RStudio:
+
+Go to terminal and type in `git status`  
+
+Then, `git add -A`  
+
+Next, `git commit -am "add a note here"` 
+
+Add finally, `git push` 
+
+2. Within the next 10 minutes, you should have an edited version of your README.md file on GitHub.
+
+------
+

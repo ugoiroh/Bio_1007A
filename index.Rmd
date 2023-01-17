@@ -19,3 +19,6 @@ output:
 
 [Assignment 3](Assignment-3.html) 
 
+# Weekly Assignments
+
+
