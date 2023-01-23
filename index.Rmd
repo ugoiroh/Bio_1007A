@@ -29,7 +29,7 @@ Hello! My name is Ugo and I am taking a course called "Reproducibility in R". I 
 
 [Weekly Assignment 1](Weekly-Assignment-1.html) 
 
-
+[Weekly Assignment 2](Weekly-Assignment-2.html)
 
 
 
