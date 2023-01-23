@@ -21,10 +21,17 @@ Hello! My name is Ugo and I am taking a course called "Reproducibility in R". I 
 
 [Assignment 3](Assignment-3.html) 
 
-[Assignment 4](Assignment-4.hmtl)
+[Assignment 4](Assignment-4.html)
 
-[Assignment 5](Assignment-5.hmtl)
+[Assignment 5](Assignment-5.html)
 
 # Weekly Assignments
 
 [Weekly Assignment 1](Weekly-Assignment-1.html) 
+
+
+
+
+
+
+
