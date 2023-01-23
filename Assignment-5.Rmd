@@ -4,7 +4,6 @@ author: "Ugo Iroh"
 date: "2023-01-19"
 output: html_document
 ---
-
 2. Create a list with the following named elements:    
 
    * `my_matrix`, which is a 4 x 4 matrix filled with random uniform values.   
@@ -74,7 +73,7 @@ print(df)
 
 `for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.`
 ```{r}
-df[sample(nrow(df),4),1] <- NA
+df[sample(1:nrow(df),4),1] <- NA
 print(df)
 ```
 `for the first variable, write a single line of R code to identify which rows have the missing values.`
@@ -91,7 +90,7 @@ print(df)
 
 `calculate the column mean for the first variable.` 
 ```{r}
-mean(df)[1]
+mean(df$my_unifs, na.rm=T) # calculates mean w/o NAs
 
 ```
 
