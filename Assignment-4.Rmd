@@ -1,0 +1,46 @@
+---
+title: "Assignment-4"
+author: "Ugo Iroh"
+date: "2023-01-17"
+output: html_document
+---
+`Assign to the variable n_dims a single random integer between 3 and 10.`
+```{r}
+n_dims <- sample(3:10, size=1)
+```
+
+`Create a vector of consecutive integers from 1 to n_dims2` 
+```{r}
+n_dims2 <- (1:n_dims^2)
+```
+`Use the sample function to randomly reshuffle these values.`
+```{r}
+sample(n_dims2)
+```
+`create a square matrix with these elements` 
+```{r}
+#my_vec <- 1:16
+table <- matrix(data=sample(n_dims2), nrow=n_dims)
+```
+`print out the matrix.`
+```{r}
+print(table)
+```
+`find a function in r to transpose the matrix.`  
+```{r}
+t(table)
+```
+
+`print it out again and note how it has changed.`
+```{r}
+
+```
+
+`calculate the sum and the mean of the elements in the first row and then the last row.`
+```{r}
+mean(table[1,])
+mean(table[n_dims,])
+```
+`set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value`
+
+

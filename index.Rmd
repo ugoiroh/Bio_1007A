@@ -9,8 +9,9 @@ output:
      
 ---
 
-![](https://lunaf.com/img/moon/m-phase-31.png?ezimgfmt=ngcb1/notWebP)
+![](https://lunaf.com/img/moon/m-phase-31.png?ezimgfmt=ngcb1/notWebP)  
 
+Hello! My name is Ugo and I am taking a course called "Reproducibility in R". I am currently learning R, so this page will serve as a place for me to track my progress. I will be posting assignments, links, etc here! 
 
 # Assignments 
 

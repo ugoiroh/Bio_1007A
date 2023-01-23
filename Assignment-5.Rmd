@@ -1,0 +1,88 @@
+---
+title: "Assignment-5"
+author: "Ugo Iroh"
+date: "2023-01-19"
+output: html_document
+---
+
+2. Create a list with the following named elements:    
+
+   * `my_matrix`, which is a 4 x 4 matrix filled with random uniform values.   
+```{r}
+my_matrix <- matrix(data=runif(16), nrow=4)
+```
+   * `my_logical`, which is a 100-element vector of TRUE or FALSE values. You can do this efficiently by setting up a vector of random values and then applying an inequality to it    
+   
+```{r}
+my_logical <- runif(100)
+my_logical < 0.5
+
+```
+   
+   * `my_letters`, which is a 26-element vector of all the lower-case letters in random order 
+
+```{r}
+my_letters <- sample(letters[1:26])
+```
+
+   
+```{r}
+list(my_matrix,my_logical,my_letters)
+```
+ 
+Then, complete the following steps:
+
+`create a new list, which has the element[2,2] from the matrix, the second element of the logical vector, and the second element of the letters vector. Use the typeof() function to confirm the underlying data types of each component in this list. Combine the underlying elements from the new list into a single atomic vector with the c() function.`
+
+#my_matrix[[2,2]]
+#my_logical[[2]]
+#my_letters[[2]]
+
+```{r}
+my_list2 <- c(my_matrix[[2,2]], my_logical[[2]], my_letters[[2]])
+
+```
+
+`what is the data type of this vector?`
+```{r}
+typeof(my_list2)
+```
+
+`Create an empty data frame with two variables (= columns) and 26 observations (= rows) below:`
+
+```{r}
+df <- data.frame(matrix(nrow=26, ncol=2)) 
+print(df)
+```
+
+`call the first column/variable my_unifs and fill it with 26 random uniform values from 0 to 10`
+```{r}
+colnames(df) <- c("my_unifs", "my_letters") 
+df$my_unifs <-runif(n=26, min=0, max=10)
+print(df)
+
+```
+
+`call the second variable my_letters and fill it with 26 capital letters in random order.`
+```{r}
+df$my_letters <- sample(LETTERS)
+print(df)
+
+```
+
+`for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.`
+```{r}
+df[sample(1:dim(df),4),"my_unifs"] <- NA
+sum(is.na(df["my_unifs"]))
+```
+`for the first variable, write a single line of R code to identify which rows have the missing values.`
+
+
+re-order the entire data frame to arrange the second variable in alphabetical order.
+
+calculate the column mean for the first variable.
+rename the second column ‘my_LETTERS’
+
+
+
+
