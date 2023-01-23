@@ -363,33 +363,39 @@ display: none;
 <pre class="r"><code>n_dims2 &lt;- (1:n_dims^2)</code></pre>
 <p><code>Use the sample function to randomly reshuffle these values.</code></p>
 <pre class="r"><code>sample(n_dims2)</code></pre>
-<pre><code>##  [1] 12 25  3 14 21 22  9  6 20  1  2 15 18  5  4 19 13 11 16 24  7 17 10 23  8</code></pre>
+<pre><code>##  [1]  8  2 10 14  7  3  4 15  1  9 16 11 12 13  6  5</code></pre>
 <p><code>create a square matrix with these elements</code></p>
 <pre class="r"><code>#my_vec &lt;- 1:16
 table &lt;- matrix(data=sample(n_dims2), nrow=n_dims)</code></pre>
 <p><code>print out the matrix.</code></p>
 <pre class="r"><code>print(table)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    5   19   21    4    6
-## [2,]   24   13   16   12   25
-## [3,]   22    9    8   23   18
-## [4,]   11   17    1    7   14
-## [5,]    2   10   20    3   15</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    2    3    8    6
+## [2,]   10    5   16   12
+## [3,]   14    1   11   15
+## [4,]   13    4    7    9</code></pre>
 <p><code>find a function in r to transpose the matrix.</code></p>
 <pre class="r"><code>t(table)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    5   24   22   11    2
-## [2,]   19   13    9   17   10
-## [3,]   21   16    8    1   20
-## [4,]    4   12   23    7    3
-## [5,]    6   25   18   14   15</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    2   10   14   13
+## [2,]    3    5    1    4
+## [3,]    8   16   11    7
+## [4,]    6   12   15    9</code></pre>
 <p><code>print it out again and note how it has changed.</code></p>
+<pre class="r"><code>print(t(table))</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    2   10   14   13
+## [2,]    3    5    1    4
+## [3,]    8   16   11    7
+## [4,]    6   12   15    9</code></pre>
 <p><code>calculate the sum and the mean of the elements in the first row and then the last row.</code></p>
 <pre class="r"><code>mean(table[1,])</code></pre>
-<pre><code>## [1] 11</code></pre>
+<pre><code>## [1] 4.75</code></pre>
 <pre class="r"><code>mean(table[n_dims,])</code></pre>
-<pre><code>## [1] 10</code></pre>
+<pre><code>## [1] 8.25</code></pre>
 <p><code>set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value</code></p>
+<p><code># reshape(table)</code></p>
+<hr />
 
 
 

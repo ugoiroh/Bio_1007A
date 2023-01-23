@@ -33,7 +33,7 @@ t(table)
 
 `print it out again and note how it has changed.`
 ```{r}
-
+print(t(table))
 ```
 
 `calculate the sum and the mean of the elements in the first row and then the last row.`
@@ -43,4 +43,6 @@ mean(table[n_dims,])
 ```
 `set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value`
 
+`# reshape(table)`
 
+--------------

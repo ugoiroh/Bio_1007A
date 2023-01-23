@@ -23,6 +23,7 @@ my_logical < 0.5
 
 ```{r}
 my_letters <- sample(letters[1:26])
+print(my_letters)
 ```
 
    
@@ -40,12 +41,13 @@ Then, complete the following steps:
 
 ```{r}
 my_list2 <- c(my_matrix[[2,2]], my_logical[[2]], my_letters[[2]])
+print(my_list2)
 
 ```
 
 `what is the data type of this vector?`
 ```{r}
-typeof(my_list2)
+print(typeof(my_list2))
 ```
 
 `Create an empty data frame with two variables (= columns) and 26 observations (= rows) below:`
@@ -72,17 +74,33 @@ print(df)
 
 `for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.`
 ```{r}
-df[sample(1:dim(df),4),"my_unifs"] <- NA
-sum(is.na(df["my_unifs"]))
+df[sample(nrow(df),4),1] <- NA
+print(df)
 ```
 `for the first variable, write a single line of R code to identify which rows have the missing values.`
+```{r}
+which(is.na(df))
+```
 
 
-re-order the entire data frame to arrange the second variable in alphabetical order.
+`re-order the entire data frame to arrange the second variable in alphabetical order.`
+```{r}
+df <- df[order(df$my_letters), ]
+print(df)
+```
 
-calculate the column mean for the first variable.
-rename the second column ‘my_LETTERS’
+`calculate the column mean for the first variable.` 
+```{r}
+mean(df)[1]
 
+```
 
+`Rename the second column ‘my_LETTERS’`
 
+```{r}
+names(df)[2] <- "my_LETTERS"
+print(df)
+```
+
+-------------------------
 
