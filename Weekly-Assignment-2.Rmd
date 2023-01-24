@@ -29,12 +29,15 @@ head(df)
 ```{r}
 df.aov <- aov(Value ~Type, data = df)
 summary(df.aov)
+
+summary(df.aov)[[1]][["Pr(>F)"]][1] #prints out p-value only
 ```
 
 
-**4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns (i.e. the output of your first function) as your ANOVA function’s argument.**
+**4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to View.use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns (i.e. the output of your first function) as your ANOVA function’s argument.**
 
 ```{r}
+summary(df.aov)[[1]][["Pr(>F)"]][1]
 
 ```
 

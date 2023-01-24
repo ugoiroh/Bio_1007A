@@ -11,9 +11,9 @@
 
 <meta name="author" content="Ugo Iroh" />
 
-<meta name="date" content="2023-01-19" />
+<meta name="date" content="2023-01-23" />
 
-<title>Assignment-5</title>
+<title>Assignment 6</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,272 +350,44 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Assignment-5</h1>
+<h1 class="title toc-ignore">Assignment 6</h1>
 <h4 class="author">Ugo Iroh</h4>
-<h4 class="date">2023-01-19</h4>
+<h4 class="date">2023-01-23</h4>
 
 </div>
 
 
-<ol start="2" style="list-style-type: decimal">
-<li><p>Create a list with the following named elements:</p>
-<ul>
-<li><code>my_matrix</code>, which is a 4 x 4 matrix filled with random
-uniform values.</li>
-</ul></li>
-</ol>
-<pre class="r"><code>my_matrix &lt;- matrix(data=runif(16), nrow=4)</code></pre>
-<ul>
-<li><code>my_logical</code>, which is a 100-element vector of TRUE or
-FALSE values. You can do this efficiently by setting up a vector of
-random values and then applying an inequality to it</li>
-</ul>
-<pre class="r"><code>my_logical &lt;- runif(100)
-my_logical &lt; 0.5</code></pre>
-<pre><code>##   [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE
-##  [13] FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE
-##  [25]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-##  [37] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE
-##  [49] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-##  [61]  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE
-##  [73] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-##  [85]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE
-##  [97]  TRUE FALSE  TRUE  TRUE</code></pre>
-<ul>
-<li><code>my_letters</code>, which is a 26-element vector of all the
-lower-case letters in random order</li>
-</ul>
-<pre class="r"><code>my_letters &lt;- sample(letters[1:26])
-print(my_letters)</code></pre>
-<pre><code>##  [1] &quot;q&quot; &quot;p&quot; &quot;x&quot; &quot;b&quot; &quot;h&quot; &quot;m&quot; &quot;a&quot; &quot;f&quot; &quot;i&quot; &quot;v&quot; &quot;k&quot; &quot;w&quot; &quot;n&quot; &quot;u&quot; &quot;j&quot; &quot;e&quot; &quot;z&quot; &quot;t&quot; &quot;c&quot;
-## [20] &quot;y&quot; &quot;g&quot; &quot;l&quot; &quot;d&quot; &quot;s&quot; &quot;r&quot; &quot;o&quot;</code></pre>
-<pre class="r"><code>list(my_matrix,my_logical,my_letters)</code></pre>
-<pre><code>## [[1]]
-##           [,1]      [,2]      [,3]      [,4]
-## [1,] 0.3773867 0.3725948 0.2151443 0.6707827
-## [2,] 0.3888488 0.4552288 0.7084276 0.5435828
-## [3,] 0.8917653 0.8925321 0.8764408 0.7843743
-## [4,] 0.2988103 0.3082400 0.8160795 0.9049238
-## 
-## [[2]]
-##   [1] 0.001995977 0.563228150 0.293166054 0.727624697 0.338028237 0.165807769
-##   [7] 0.359763306 0.995565757 0.409897282 0.594514574 0.456811650 0.745920235
-##  [13] 0.542388026 0.822832064 0.150666428 0.070929420 0.416950412 0.762886256
-##  [19] 0.260904037 0.923531558 0.198362427 0.770567565 0.472576825 0.389901916
-##  [25] 0.128479702 0.440994576 0.398624007 0.993622587 0.800557109 0.553940616
-##  [31] 0.440622551 0.603256674 0.939594706 0.855658462 0.726237246 0.929455179
-##  [37] 0.739306355 0.021267204 0.427606437 0.434214404 0.073912584 0.199684646
-##  [43] 0.024693053 0.522806532 0.660702362 0.321348676 0.511400058 0.430562919
-##  [49] 0.859860412 0.576576735 0.335664572 0.333601208 0.662687843 0.776129692
-##  [55] 0.590032500 0.697936101 0.247752492 0.794055208 0.825806740 0.649222906
-##  [61] 0.050188938 0.262101056 0.538261511 0.855696656 0.886668016 0.093725498
-##  [67] 0.982518466 0.483013855 0.784651061 0.162228364 0.370054209 0.695942750
-##  [73] 0.905553197 0.571420979 0.680160632 0.583907508 0.211376589 0.433104989
-##  [79] 0.601091387 0.370024966 0.324497207 0.221017471 0.263671065 0.215847614
-##  [85] 0.241822484 0.871921096 0.887763326 0.558511080 0.604552965 0.144094421
-##  [91] 0.305152276 0.889649367 0.419014858 0.558684387 0.672632391 0.126564199
-##  [97] 0.298408147 0.946104856 0.283951187 0.181120252
-## 
-## [[3]]
-##  [1] &quot;q&quot; &quot;p&quot; &quot;x&quot; &quot;b&quot; &quot;h&quot; &quot;m&quot; &quot;a&quot; &quot;f&quot; &quot;i&quot; &quot;v&quot; &quot;k&quot; &quot;w&quot; &quot;n&quot; &quot;u&quot; &quot;j&quot; &quot;e&quot; &quot;z&quot; &quot;t&quot; &quot;c&quot;
-## [20] &quot;y&quot; &quot;g&quot; &quot;l&quot; &quot;d&quot; &quot;s&quot; &quot;r&quot; &quot;o&quot;</code></pre>
-<p>Then, complete the following steps:</p>
-<p><code>create a new list, which has the element[2,2] from the matrix, the second element of the logical vector, and the second element of the letters vector. Use the typeof() function to confirm the underlying data types of each component in this list. Combine the underlying elements from the new list into a single atomic vector with the c() function.</code></p>
-<p>#my_matrix[[2,2]] #my_logical[[2]] #my_letters[[2]]</p>
-<pre class="r"><code>my_list2 &lt;- c(my_matrix[[2,2]], my_logical[[2]], my_letters[[2]])
-print(my_list2)</code></pre>
-<pre><code>## [1] &quot;0.455228823935613&quot; &quot;0.563228150364012&quot; &quot;p&quot;</code></pre>
-<p><code>what is the data type of this vector?</code></p>
-<pre class="r"><code>print(typeof(my_list2))</code></pre>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<p><code>Create an empty data frame with two variables (= columns) and 26 observations (= rows) below:</code></p>
-<pre class="r"><code>df &lt;- data.frame(matrix(nrow=26, ncol=2)) 
-print(df)</code></pre>
-<pre><code>##    X1 X2
-## 1  NA NA
-## 2  NA NA
-## 3  NA NA
-## 4  NA NA
-## 5  NA NA
-## 6  NA NA
-## 7  NA NA
-## 8  NA NA
-## 9  NA NA
-## 10 NA NA
-## 11 NA NA
-## 12 NA NA
-## 13 NA NA
-## 14 NA NA
-## 15 NA NA
-## 16 NA NA
-## 17 NA NA
-## 18 NA NA
-## 19 NA NA
-## 20 NA NA
-## 21 NA NA
-## 22 NA NA
-## 23 NA NA
-## 24 NA NA
-## 25 NA NA
-## 26 NA NA</code></pre>
-<p><code>call the first column/variable my_unifs and fill it with 26 random uniform values from 0 to 10</code></p>
-<pre class="r"><code>colnames(df) &lt;- c(&quot;my_unifs&quot;, &quot;my_letters&quot;) 
-df$my_unifs &lt;-runif(n=26, min=0, max=10)
-print(df)</code></pre>
-<pre><code>##     my_unifs my_letters
-## 1  5.9089709         NA
-## 2  0.6276787         NA
-## 3  6.5697048         NA
-## 4  2.1149326         NA
-## 5  6.5975311         NA
-## 6  5.9425681         NA
-## 7  5.8371953         NA
-## 8  0.9697131         NA
-## 9  3.5490837         NA
-## 10 1.2710340         NA
-## 11 9.1915533         NA
-## 12 1.8963222         NA
-## 13 9.4053923         NA
-## 14 8.2449049         NA
-## 15 8.4902650         NA
-## 16 5.2923858         NA
-## 17 8.3739194         NA
-## 18 7.7754749         NA
-## 19 6.3963194         NA
-## 20 0.5020046         NA
-## 21 7.6498600         NA
-## 22 2.8822202         NA
-## 23 8.8688770         NA
-## 24 0.8326228         NA
-## 25 2.0776778         NA
-## 26 9.8581857         NA</code></pre>
-<p><code>call the second variable my_letters and fill it with 26 capital letters in random order.</code></p>
-<pre class="r"><code>df$my_letters &lt;- sample(LETTERS)
-print(df)</code></pre>
-<pre><code>##     my_unifs my_letters
-## 1  5.9089709          T
-## 2  0.6276787          R
-## 3  6.5697048          K
-## 4  2.1149326          Q
-## 5  6.5975311          S
-## 6  5.9425681          M
-## 7  5.8371953          A
-## 8  0.9697131          Z
-## 9  3.5490837          C
-## 10 1.2710340          W
-## 11 9.1915533          X
-## 12 1.8963222          P
-## 13 9.4053923          H
-## 14 8.2449049          E
-## 15 8.4902650          O
-## 16 5.2923858          D
-## 17 8.3739194          I
-## 18 7.7754749          N
-## 19 6.3963194          B
-## 20 0.5020046          V
-## 21 7.6498600          L
-## 22 2.8822202          G
-## 23 8.8688770          U
-## 24 0.8326228          J
-## 25 2.0776778          Y
-## 26 9.8581857          F</code></pre>
-<p><code>for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.</code></p>
-<pre class="r"><code>df[sample(1:nrow(df),4),1] &lt;- NA
-print(df)</code></pre>
-<pre><code>##     my_unifs my_letters
-## 1  5.9089709          T
-## 2  0.6276787          R
-## 3  6.5697048          K
-## 4  2.1149326          Q
-## 5  6.5975311          S
-## 6  5.9425681          M
-## 7  5.8371953          A
-## 8  0.9697131          Z
-## 9  3.5490837          C
-## 10 1.2710340          W
-## 11 9.1915533          X
-## 12        NA          P
-## 13 9.4053923          H
-## 14 8.2449049          E
-## 15 8.4902650          O
-## 16 5.2923858          D
-## 17 8.3739194          I
-## 18 7.7754749          N
-## 19 6.3963194          B
-## 20        NA          V
-## 21 7.6498600          L
-## 22 2.8822202          G
-## 23        NA          U
-## 24 0.8326228          J
-## 25        NA          Y
-## 26 9.8581857          F</code></pre>
-<p><code>for the first variable, write a single line of R code to identify which rows have the missing values.</code></p>
-<pre class="r"><code>which(is.na(df))</code></pre>
-<pre><code>## [1] 12 20 23 25</code></pre>
-<p><code>re-order the entire data frame to arrange the second variable in alphabetical order.</code></p>
-<pre class="r"><code>df &lt;- df[order(df$my_letters), ]
-print(df)</code></pre>
-<pre><code>##     my_unifs my_letters
-## 7  5.8371953          A
-## 19 6.3963194          B
-## 9  3.5490837          C
-## 16 5.2923858          D
-## 14 8.2449049          E
-## 26 9.8581857          F
-## 22 2.8822202          G
-## 13 9.4053923          H
-## 17 8.3739194          I
-## 24 0.8326228          J
-## 3  6.5697048          K
-## 21 7.6498600          L
-## 6  5.9425681          M
-## 18 7.7754749          N
-## 15 8.4902650          O
-## 12        NA          P
-## 4  2.1149326          Q
-## 2  0.6276787          R
-## 5  6.5975311          S
-## 1  5.9089709          T
-## 23        NA          U
-## 20        NA          V
-## 10 1.2710340          W
-## 11 9.1915533          X
-## 25        NA          Y
-## 8  0.9697131          Z</code></pre>
-<p><code>calculate the column mean for the first variable.</code></p>
-<pre class="r"><code>mean(df$my_unifs, na.rm=T) # calculates mean w/o NAs</code></pre>
-<pre><code>## [1] 5.626433</code></pre>
-<p><code>Rename the second column ‘my_LETTERS’</code></p>
-<pre class="r"><code>names(df)[2] &lt;- &quot;my_LETTERS&quot;
-print(df)</code></pre>
-<pre><code>##     my_unifs my_LETTERS
-## 7  5.8371953          A
-## 19 6.3963194          B
-## 9  3.5490837          C
-## 16 5.2923858          D
-## 14 8.2449049          E
-## 26 9.8581857          F
-## 22 2.8822202          G
-## 13 9.4053923          H
-## 17 8.3739194          I
-## 24 0.8326228          J
-## 3  6.5697048          K
-## 21 7.6498600          L
-## 6  5.9425681          M
-## 18 7.7754749          N
-## 15 8.4902650          O
-## 12        NA          P
-## 4  2.1149326          Q
-## 2  0.6276787          R
-## 5  6.5975311          S
-## 1  5.9089709          T
-## 23        NA          U
-## 20        NA          V
-## 10 1.2710340          W
-## 11 9.1915533          X
-## 25        NA          Y
-## 8  0.9697131          Z</code></pre>
-<hr />
+<p><strong>This homework assignment focus on data manipulation in R.
+Complete these problems using the <code>dplyr</code> and
+<code>tidyverse</code> packages.</strong></p>
+<p>1.Examine the structure of the iris data set. How many observations
+and variables are in the data set?</p>
+<p>2.Create a new data frame iris1 that contains only the species
+virginica and versicolor with sepal lengths longer than 6 cm and sepal
+widths longer than 2.5 cm. How many observations and variables are in
+the data set?</p>
+<p>3.Now, create a iris2 data frame from iris1 that contains only the
+columns for Species, Sepal.Length, and Sepal.Width. How many
+observations and variables are in the data set?</p>
+<p>4.Create an iris3 data frame from iris2 that orders the observations
+from largest to smallest sepal length. Show the first 6 rows of this
+data set.</p>
+<p>5.Create an iris4 data frame from iris3 that creates a column with a
+sepal area (length * width) value for each observation. How many
+observations and variables are in the data set?</p>
+<p>6.Create the variable irisTab that shows the average sepal length,
+the average sepal width, and the sample size of the entire iris4 data
+frame and print irisTab.</p>
+<p>7.Finally, create iris5 that calculates the average sepal length, the
+average sepal width, and the sample size for each species of in the
+iris4 data frame and print iris5.</p>
+<p>8.In these exercises, you have successively modified different
+versions of the data frame iris1 iris2 iris3 iris4 iris5. At each stage,
+the output data frame from one operation serves as the input fro the
+next. A more efficient way to do this is to use the pipe operator %&gt;%
+from the tidyr package. Rework all of your previous statements (except
+for irisTab) into an extended piping operation that uses iris as the
+input and generates irisFinal as the output.</p>
 
 
 

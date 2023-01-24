@@ -365,56 +365,56 @@ Value &lt;- c(rnorm(n=25, mean=10, sd=1.5), rnorm(n=25, mean=45, sd=2))
 df &lt;- data.frame(Type, Value)
 print(df)</code></pre>
 <pre><code>##         Type     Value
-## 1    Control 10.920922
-## 2    Control 10.288900
-## 3    Control 10.994610
-## 4    Control 10.333971
-## 5    Control  9.661116
-## 6    Control  8.828041
-## 7    Control 11.286208
-## 8    Control  8.949430
-## 9    Control  7.506396
-## 10   Control  8.517345
-## 11   Control  7.238717
-## 12   Control 11.432386
-## 13   Control  9.895686
-## 14   Control  9.864666
-## 15   Control 10.322719
-## 16   Control  9.274895
-## 17   Control 10.505344
-## 18   Control 10.752936
-## 19   Control 10.556509
-## 20   Control  9.578095
-## 21   Control 10.965534
-## 22   Control  9.227997
-## 23   Control 11.795099
-## 24   Control  8.566185
-## 25   Control  9.061593
-## 26 Treatment 45.515495
-## 27 Treatment 48.295816
-## 28 Treatment 44.366660
-## 29 Treatment 47.006524
-## 30 Treatment 45.864768
-## 31 Treatment 44.096847
-## 32 Treatment 43.457525
-## 33 Treatment 45.926729
-## 34 Treatment 44.221725
-## 35 Treatment 47.984002
-## 36 Treatment 45.427563
-## 37 Treatment 46.810409
-## 38 Treatment 45.195399
-## 39 Treatment 43.574454
-## 40 Treatment 46.360354
-## 41 Treatment 46.457641
-## 42 Treatment 44.604792
-## 43 Treatment 46.448065
-## 44 Treatment 47.942342
-## 45 Treatment 45.281780
-## 46 Treatment 45.727938
-## 47 Treatment 44.832963
-## 48 Treatment 45.665079
-## 49 Treatment 43.722188
-## 50 Treatment 41.740987</code></pre>
+## 1    Control 12.329399
+## 2    Control 10.541406
+## 3    Control 10.188462
+## 4    Control  9.946543
+## 5    Control 10.882429
+## 6    Control  9.644559
+## 7    Control 11.199897
+## 8    Control  8.755055
+## 9    Control 11.321863
+## 10   Control 12.778440
+## 11   Control  9.687740
+## 12   Control 10.839582
+## 13   Control  8.565936
+## 14   Control 12.365794
+## 15   Control  7.770387
+## 16   Control 11.052764
+## 17   Control 11.775656
+## 18   Control 10.356280
+## 19   Control 11.238206
+## 20   Control  9.450786
+## 21   Control  9.636963
+## 22   Control 11.988056
+## 23   Control 10.415978
+## 24   Control  8.932202
+## 25   Control  8.624207
+## 26 Treatment 44.697644
+## 27 Treatment 43.823179
+## 28 Treatment 44.513758
+## 29 Treatment 46.714938
+## 30 Treatment 46.692602
+## 31 Treatment 45.950463
+## 32 Treatment 45.605342
+## 33 Treatment 43.630759
+## 34 Treatment 45.545753
+## 35 Treatment 44.781045
+## 36 Treatment 46.425759
+## 37 Treatment 46.335377
+## 38 Treatment 46.109489
+## 39 Treatment 44.975963
+## 40 Treatment 43.464038
+## 41 Treatment 43.924835
+## 42 Treatment 42.990993
+## 43 Treatment 42.387685
+## 44 Treatment 46.389387
+## 45 Treatment 48.859755
+## 46 Treatment 43.302025
+## 47 Treatment 42.902890
+## 48 Treatment 45.805636
+## 49 Treatment 48.088711
+## 50 Treatment 43.224426</code></pre>
 <ul>
 <li>The arguments of your function should be the two means of the random
 normal numbers. The body of the function can be a single line of code
@@ -424,12 +424,12 @@ normal numbers. The body of the function can be a single line of code
 the first 6 rows of the data frame.</strong></p>
 <pre class="r"><code>head(df)</code></pre>
 <pre><code>##      Type     Value
-## 1 Control 10.920922
-## 2 Control 10.288900
-## 3 Control 10.994610
-## 4 Control 10.333971
-## 5 Control  9.661116
-## 6 Control  8.828041</code></pre>
+## 1 Control 12.329399
+## 2 Control 10.541406
+## 3 Control 10.188462
+## 4 Control  9.946543
+## 5 Control 10.882429
+## 6 Control  9.644559</code></pre>
 <p><strong>3. Let’s say you would like to know whether there is a
 statistically significant difference in “Value” (response variable y)
 depending on “Type” (explanatory variable x). Type ?aov in the console
@@ -441,15 +441,19 @@ of your ANOVA.</strong></p>
 <pre class="r"><code>df.aov &lt;- aov(Value ~Type, data = df)
 summary(df.aov)</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  15849   15849    8288 &lt;2e-16 ***
-## Residuals   48     92       2                   
+## Type         1  15029   15029    6586 &lt;2e-16 ***
+## Residuals   48    110       2                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>summary(df.aov)[[1]][[&quot;Pr(&gt;F)&quot;]][1] #prints out p-value only</code></pre>
+<pre><code>## [1] 4.864847e-53</code></pre>
 <p><strong>4. Finally create a function that uses a data frame as its
 input and returns only the p-value of an ANOVA summary table (feel free
-to use Google/Stack Overflow). Write your code in such a way that you
-can use any simulated data set with two columns (i.e. the output of your
-first function) as your ANOVA function’s argument.</strong></p>
+to View.use Google/Stack Overflow). Write your code in such a way that
+you can use any simulated data set with two columns (i.e. the output of
+your first function) as your ANOVA function’s argument.</strong></p>
+<pre class="r"><code>summary(df.aov)[[1]][[&quot;Pr(&gt;F)&quot;]][1]</code></pre>
+<pre><code>## [1] 4.864847e-53</code></pre>
 <hr />
 
 
