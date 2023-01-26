@@ -26,7 +26,7 @@ library(tidyverse) #use library function to load in packages. We can also look a
 data(starwars)
 class(starwars)
 
-#Tibble or 'tbl' is a modern dataframe. It is a dataframe that minimizes headaches by keeping great aspects of data frame and leaves out the annoying parts; e.g. it can change the input type.
+#Tibble is a dataframe that minimizes headaches by keeping great aspects of data frame and leaves out the annoying parts; e.g. it can change the input type.
 
 glimpse(starwars) #use this to clean up data.
 
@@ -53,7 +53,7 @@ filter(starwarsClean, gender=="masculine"|height<180) # | <- or
   
 # The output of %in% depends on first vector
   
-a %in%b #checks within a and sees if it is in b. "IS FIRST VECTOR IN THE SECOND?"
+a %in% b #checks within a and sees if it is in b. "IS FIRST VECTOR IN THE SECOND?"
 
 eyes <- filter(starwars, eye_color %in%c("blue", "brown")) 
 
@@ -64,7 +64,7 @@ eyes2 <- filter(starwars, eye_color=="blue"|eye_color=="brown")
 View(eyes) & View(eyes2) # lets you view table 
 
 
-## Arrange() arranges variables by what you specify. lets you see rows
+## Arrange() arranges variables by what you specify. lets you see ROWS
     arrange(starwarsClean, by=height)
     arrange(starwarsClean, by=desc(height)) # you can also use helper function for descending order
     
@@ -74,7 +74,7 @@ View(eyes) & View(eyes2) # lets you view table
     tail(sw) #missing values are at the end of the index
 
 
-## Select() chooses variables and cols by their names. Subsets by cols
+## Select() chooses variables and COLS by their names. Subsets by cols
     
 select(starwarsClean, 1:10) #give me first 10 cols
 select(starwarsClean, name:species) #use names of cols to only select what we want
@@ -92,18 +92,18 @@ select(starwarsClean, contains("color"))
 #rename function
   rename(starwarsClean, haircolor=hair_color) # return WHOLE data set with renamed column
 
-## Mutate() creates new variables using functions of existing variables
+## Mutate() creates new variables using functions of existing variables. It add the new variables to the data frame without deleting the old variables.
    (mutate(starwarsClean, ratio=height/mass)) #we want height:mass ratio. 
    view(starwars_lbs <- mutate(starwarsClean, mass_lbs=mass*2.2)) #conversion
    starwars_lbs <- select(starwars_lbs, 1:3, mass_lbs, everything())
    transmute(starwarsClean, mass_lbs=mass*2.2) #we only want a new dataframe with updated variable. only returns mutated col
-   transmute(starwarsClean, mass, mass_lbs=mass*2.2, height)
+   transmute(starwarsClean, mass, mass_lbs=mass*2.2, height) #transmutate add new variables and deletes the old ones
 
    # use .before or .after function to put something after or before another thing
    
 ## Group_by() and summarize() is easiest to use them together
    summarize(starwarsClean, meanHeight=mean(height)) #gives us mean height of all the characters in one dataframe. Also throws NA if it is in dataframe; use na.rm=T to remove.
-   summarize(starwarsClean, meanHeight=mean(height), TotalNumber=n()) #average height for dataset and total numbers
+   summarize(starwarsClean, meanHeight=mean(height), TotalNumber=n()) #average height for dataset and total numbers=everything after 
 
 # Use group_by() for maximum usefulness
    starwarsGenders <- group_by(starwars, gender)
@@ -121,24 +121,92 @@ starwarsClean %>%
      mutate(sp=case_when(species=="Human"~"Human", T~"Non-Human")) #if species is Human, put it in new col in human, if not, put it in non-Human col. Puts Human if T in sp col, put Non-Human if false
    
    
+### Publishing quality graphs requires a package called ggplot 
+library(ggplot2)
+library(ggthemes)  
+library(patchwork)
+
+### Template for ggplot code:
+# ggplot(data=add data here, mapping=aes(x=xVariable, y=yVariable)) + GEOM function
+#  then print()
    
+## Let's load in another built-in data set as an example:
+d <- mpg
+str(mpg)
+
+library(dplyr)   #first have to load dyplyr
+glimpse(d) #use glimpse to clean data
+
+## qplot: quick plotting, not for publications though
+qplot(x=d$hwy)
+
+qplot(x=d$hwy, fill=I("darkblue"), color=I("black")) #use this to fill in and outline colors for graphs. Remember to put 'I' in front of what color you want.
+
+####Making Scatterplot
+qplot(x=d$displ, y=d$hwy, geom=c("smooth", "point")) 
+
+####Making Linear model
+qplot(x=d$displ, y=d$hwy, geom=c("smooth", "point"), method=lm) 
    
-   
-   
-   
-   
-   
-   
-   
+####Making Boxplots   
+qplot(x=d$fl, y=d$cty, geom="boxplot", fill=I("forestgreen"))  
   
+####Making Bar plots
+qplot(x=d$fl, geom="bar", fill=I("forestgreen"))
+
+####Making data with specific counts
+
+x_trt <- c("Control", "Low", "High")
+y_resp <- c(12, 2.5, 22.9)  
+qplot(x=x_trt, y=y_resp, geom="col",fill=I(c("darkblue","slategray", "goldenrod")))
   
-  
-  
+###Using ggplot to make dataframes
+
+p1 <-ggplot(data=d, mapping=aes(x=displ, y=cty, color=cyl)) + 
+  geom_point()
+ print(p1)
+ 
+   #adding plot arguments
+ 
+p1 + theme_base() #changes background
+p1 + theme_bw()  #adds gridelines
+p1 + theme_classic() #changes margins
+p1 + theme_linedraw() #changes margins
+p1 + theme_dark() #dark background
+p1 + theme_light()
+
+# Change specifications of graph: font size, font type, etc
+
+p1 + theme_bw(base_size=20, base_family="serif")
+
+p2 <- ggplot(data=d, aes(x=fl, fill=fl)) +
+  geom_bar()
+p2 + coord_flip() + theme_classic(base_size=15, base_family="sans")
+                                   
+##Theme modifications
+
+p3 <- ggplot(data=d, aes(x=displ, y=cty)) + geom_point(size=7, shape=25, color="magenta", fill="black") + 
+  xlab("Count") + ylab("Fuel") + labs(title="My Title", subtitle="my subtitle") 
+print(p3)
+
+p3 + xlim(1,10) +ylim(0,35)
+
+#Another example
+library(viridis)
+cols <- viridis(7, option="plasma") #the number of groups has to match the number you put in the parenthesis. 
+ggplot(data=d, aes(x=class, y=hwy, fill=class)) +
+  geom_boxplot() +
+  scale_fill_manual(values=cols)
   
 
+###Multifigure panel
+ #different types of layout!
+library(patchwork)
+p1 + p2+ p3
 
+p1/p2/p3
 
-
+(p1+p2) / p3
 
 
 

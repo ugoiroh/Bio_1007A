@@ -9,7 +9,8 @@ output: html_document
 
 1.Examine the structure of the iris data set. How many observations and variables are in the data set?
 ```{r}
-view(iris)
+library(dplyr)
+View(iris)
 str(iris)
 print(str(iris))
 ```
@@ -65,22 +66,9 @@ irisFinal <- iris %>%
   select(Species, Sepal.Length, Sepal.Width) %>%
   arrange(by=desc(Sepal.Length)) %>%
   mutate(Sepal.Area=Sepal.Length*Sepal.Width) %>%
+   group_by(Species) %>%
   summarize(AverageSepalLength= mean(Sepal.Length), AverageSepalWidth=mean (Sepal.Width),SampleSize=n()) %>%
-  group_by(Species) %>%
-  summarize(AverageSepalLength=mean(Sepal.Length),AverageSepalWidth=mean(Sepal.Width), SampleSize=n()) %>%
-  print(irisFinal)
-
-
-  
-  
-  
-  
-  
-  
-  
-
-  
-
+  print(irisFinal) 
 
 ```
 

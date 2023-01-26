@@ -25,6 +25,8 @@ Hello! My name is Ugo and I am taking a course called "Reproducibility in R". I 
 
 [Assignment 5](Assignment-5.html)
 
+[Assignment 6](Assignment-6.hmtl)
+
 # Weekly Assignments
 
 [Weekly Assignment 1](Weekly-Assignment-1.html) 
