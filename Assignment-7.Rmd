@@ -46,10 +46,11 @@ print(starwarsCleanAverages)
 3. Create a box plot figure that shows the variation in heights among Star Wars species. Do the values in your summary table line up with the plot? Code so that each box plot (Species) is be filled with a different color. Change your axes labels so that species is capitalized and height is capitalized and shows units (cm). Use the theme_minimal option. Then look into the annotate or geom_text functions and add the text “p=1.2E-0.5” to the top right corner.
 
 ```{r}
+
 p1 <- ggplot(data=starwarsClean, aes(x=species, y=height, fill=species)) +
   geom_boxplot() +
   xlab("Species") +
-  ylab("Height(cm)") 
+  ylab("Height (cm)") 
 
   p1 + theme_minimal() + annotate("text", x=NA, y=240, label="1.2E-0.5", color="darkblue", size=3)
 
@@ -58,16 +59,29 @@ p1 <- ggplot(data=starwarsClean, aes(x=species, y=height, fill=species)) +
 
 ```{r}
 
-p2 <- ggplot(data=starwarsClean, aes(x=species, y=height, fill=species)) +
-  geom_histogram() +
-  xlab("Species") +
-  ylab("Height(cm)") 
-  p2 + theme_minimal() + annotate("text", x=NA, y=240, label="1.2E-0.5", color="darkmagenta", size=3)
+p2 <-ggplot(data=starwarsClean, aes(x=species, y=height, fill=species)) +
+  geom_bar(stat="identity") + xlab("Species") +
+  ylab("Height (cm)") +
+  scale_fill_manual(values=I(c("#9933FF", "#33FFFF","red","darkblue", "pink", "burlywood4", "brown4", "darkslateblue", "gray31")))
   
+p2 + theme_minimal() + annotate("text", x=NA, y=5000, label="1.2E-0.5", color="darkblue", size=3)
+
 ```
 
+```{r}
+p3 <- ggplot(data=starwarsClean, aes(x=species, y=height, color=species)) +
+  geom_bar(stat="identity", fill="white") + xlab("Species") +
+ylab("Height (cm)")
+ 
+p3 + theme_minimal() + annotate("text", x=NA, y=4700, label="1.2E-0.5", color="darkblue", size=3)
+
+```
   
 5. Finally, create a multi-panel figure with the graphs you created.
 
+```{r}
+library(patchwork)
+p1/p2/p3
+```
 
 

@@ -19,7 +19,6 @@ print(str(iris))
 ```{r}
 iris1 <- filter(iris, Species=="virginica" | Species=="versicolor",Sepal.Length>6, Sepal.Width>2.5)
 print(iris1)
-
 ```
 
 3.Now, create a iris2 data frame from iris1 that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the data set?
@@ -37,7 +36,7 @@ head(iris3)
 5.Create an iris4 data frame from iris3 that creates a column with a sepal area (length * width) value for each observation. How many observations and variables are in the data set?
 ```{r}
 iris4 <- mutate(iris3, Sepal.Area=Sepal.Length*Sepal.Width)
-print(iris4)
+print(iris4) 
 ```
 
 
@@ -72,3 +71,4 @@ irisFinal <- iris %>%
 
 ```
 
+----------

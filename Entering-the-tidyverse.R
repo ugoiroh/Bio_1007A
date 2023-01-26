@@ -199,8 +199,7 @@ ggplot(data=d, aes(x=class, y=hwy, fill=class)) +
   scale_fill_manual(values=cols)
   
 
-###Multifigure panel
- #different types of layout!
+###Multipanel layout
 library(patchwork)
 p1 + p2+ p3
 
