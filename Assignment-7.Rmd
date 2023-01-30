@@ -55,6 +55,7 @@ p1 <- ggplot(data=starwarsClean, aes(x=species, y=height, fill=species)) +
   p1 + theme_minimal() + annotate("text", x=NA, y=240, label="1.2E-0.5", color="darkblue", size=3)
 
 ```
+
 4. Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors.
 
 ```{r}

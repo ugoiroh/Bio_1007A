@@ -13,30 +13,34 @@ library(dplyr)
 View(iris)
 str(iris)
 print(str(iris))
+
+##answer key uses data() function
 ```
 
 2.Create a new data frame iris1 that contains only the species virginica and versicolor with sepal lengths longer than 6 cm and sepal widths longer than 2.5 cm. How many observations and variables are in the data set?
 ```{r}
 iris1 <- filter(iris, Species=="virginica" | Species=="versicolor",Sepal.Length>6, Sepal.Width>2.5)
-print(iris1)
+print(iris1) # can also use glipse(iris1)
 ```
 
 3.Now, create a iris2 data frame from iris1 that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the data set?
 ```{r}
 iris2 <- select(iris1, Species, Sepal.Length, Sepal.Width)
-print(iris2)
+print(iris2) #can also use glimpse(iris2)
 ```
 
 4.Create an iris3 data frame from iris2 that orders the observations from largest to smallest sepal length. Show the first 6 rows of this data set.
 ```{r}
 iris3 <- arrange(iris2, by=desc(Sepal.Length))
-head(iris3)
+head(iris3) 
+
+#answer key doesn't have by= but I guess both does the job
 ```
 
 5.Create an iris4 data frame from iris3 that creates a column with a sepal area (length * width) value for each observation. How many observations and variables are in the data set?
 ```{r}
 iris4 <- mutate(iris3, Sepal.Area=Sepal.Length*Sepal.Width)
-print(iris4) 
+print(iris4) #or glimpse()
 ```
 
 
@@ -51,7 +55,7 @@ print(irisTab)
 
 7.Finally, create iris5 that calculates the average sepal length, the average sepal width, and the sample size for each species in the iris4 data frame and print iris5.
 ```{r}
-iris5 <- group_by(iris4, Species)
+iris5 <- group_by(iris4, Species) #. <- group_by(iris4, Species) 
 iris5<-summarize(iris5, AverageSepalLength=mean(Sepal.Length), AverageSepalWidth=mean(Sepal.Width), SampleSize=n())
 print(iris5)
 ```
@@ -66,8 +70,11 @@ irisFinal <- iris %>%
   arrange(by=desc(Sepal.Length)) %>%
   mutate(Sepal.Area=Sepal.Length*Sepal.Width) %>%
    group_by(Species) %>%
-  summarize(AverageSepalLength= mean(Sepal.Length), AverageSepalWidth=mean (Sepal.Width),SampleSize=n()) %>%
-  print(irisFinal) 
+  summarize(AverageSepalLength= mean(Sepal.Length), AverageSepalWidth=mean (Sepal.Width),SampleSize=n()) 
+
+irisFinal
+  
+
 
 ```
 

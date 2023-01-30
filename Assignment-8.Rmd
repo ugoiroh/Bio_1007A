@@ -1,0 +1,118 @@
+---
+title: "Assignment 8"
+author: "Ugo Iroh"
+date: "2023-01-26"
+output: html_document
+---
+
+---
+title: "Weekly Assignment 2"
+author: "Ugo Iroh"
+date: "2023-01-23"
+output: html_document
+---
+
+**1. Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations:**
+
+`The first column should have “Control” as the first 25 observations and “Treatment” as the second half of observations. The second column should have the first 25 values as random and normally distributed with a mean of 10 and standard deviation of 1.5. The next 25 values of the second column should be random and normally distributed with a mean of 45 and standard deviation of 2.`  
+
+```{r}
+##### I should've probably added the set.seed function for reproducibility
+##### It's better to define assign the means (mean1, mean2, etc) to a number, then put the means within the function so that I don"t have to keep changing my function every time I want to run the function with different numbers.
+
+### Intead of this
+Type <-c(rep("Control",25), rep("Treatment",25)) 
+Value <- c(rnorm(n=25, mean=10, sd=1.5), rnorm(n=25, mean=45, sd=2))
+df <- data.frame(Type, Value)
+print(df)
+### I think I had the right thought process, however, my code is def not efficient. If I wanted to reproduce these results I probably couldn't because it was be a hassle having to change the function from the beginning. 
+
+### This is probably more efficient. I can create my own argument--I can just rerun calling the function name. 
+set.seed(123)
+sampleData <- function(mean1=20, sd1=3, mean2=90, sd2=4, n=50){
+  
+  Type <- rep(c("Control", "Treatment"), each = n)
+  Value <- c(rnorm(n, mean = mean1, sd = sd1), rnorm(n, mean = mean2, sd = sd2))
+  dframe <- data.frame(Type, Value)
+  return(dframe)
+}
+## 1. Name function first that specifies the variables: means, sds, and n
+## 2. Create another function that includes the argument names 
+
+```
+
+
+  * The arguments of your function should be the two means of the random normal numbers. The body of the function can be a single line of code (if you want a challenge) or broken up into multiple code blocks.
+  
+**2. Save your new function’s output as a variable, and view the first 6 rows of the data frame.**
+```{r}
+head(df)
+```
+
+**3. Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type ?aov in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. The formula is written as yVar~xVar with yVar as the column name of your response variable and xVar as the column name of your explanatory variable. Write a line of code that displays a summary of your ANOVA.**
+
+```{r}
+### Mine
+df.aov <- aov(Value ~Type, data = df)
+summary(df.aov)
+
+summary(df.aov)[[1]][["Pr(>F)"]][1] #prints out p-value only
+
+###Solution
+
+###myPval <- function(df=NULL){
+  
+##  test <- aov(Value ~ Type, data=df)
+ ## testSummary <- summary(test)
+ ## p_value <- testSummary[[1]][["Pr(>F)"]][1]
+##  return(p_value)
+#}
+
+##myPval(df=data)
+
+###Thoughts
+# I feel like my and the sample solution pretty much say the same thing.
+```
+
+
+**4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to View.use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns (i.e. the output of your first function) as your ANOVA function’s argument.**
+
+```{r}
+####I think this pretty straight forward. use summary to summarize data frame
+
+summary(df.aov)[[1]][["Pr(>F)"]][1]
+
+```
+
+----------------------------------
+## Extra notes from 27 Jan 2023
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+dryadData <- read.table(file="Data/veysey-babbitt_data_amphibians.csv", header=T, sep=',')
+
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot. use factor function so that R can recognize that the species are DIFFERENT 
+
+#class(dryadData$treatment)
+dryadData$treatment <- factor(dryadData$treatment,  #have to factor treatment and give it levels
+            levels=c("Reference", #levels=orders that groups go in
+                     "100m", "30m"))
+
+
+p<- ggplot(data=dryadData, 
+       aes(x=interaction(wetland, treatment), #use x=interaction to merge both wetland and treatment
+           y=count.total.adults, fill=factor(year))) + geom_bar(position="dodge", stat="identity", color="black") +
+  ylab("Number of breeding adults") +
+  xlab("") +
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) +
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) +
+  facet_wrap(~species, nrow=2, strip.position="right") +
+  theme_few() + scale_fill_grey() + 
+  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), legend.position="top",  legend.title= element_blank(), axis.title.y = element_text(size=12, face="bold", colour = "black"), strip.text.y = element_text(size = 10, face="bold", colour = "black")) + 
+  guides(fill=guide_legend(nrow=1,byrow=TRUE)) 
+
+p
+
+```
+
