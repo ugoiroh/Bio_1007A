@@ -46,14 +46,14 @@ sampleData <- function(mean1=20, sd1=3, mean2=90, sd2=4, n=50){
   
 **2. Save your new function’s output as a variable, and view the first 6 rows of the data frame.**
 ```{r}
-head(df)
+head(df) #lets you see the first 6 rows
 ```
 
 **3. Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type ?aov in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. The formula is written as yVar~xVar with yVar as the column name of your response variable and xVar as the column name of your explanatory variable. Write a line of code that displays a summary of your ANOVA.**
 
 ```{r}
 ### Mine
-df.aov <- aov(Value ~Type, data = df)
+df.aov <- aov(Value ~Type, data = df) #ANOVA-stat analysis
 summary(df.aov)
 
 summary(df.aov)[[1]][["Pr(>F)"]][1] #prints out p-value only

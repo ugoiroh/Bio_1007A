@@ -1,0 +1,42 @@
+---
+title: "Weekly Assignment 4"
+author: "Ugo Iroh"
+date: "2023-01-31"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+`Simulate a brand new data frame (the type of data is up to you) and conduct a statistical analysis in R using 2 variables. Create a basic ggplot that goes with the analysis.`
+
+```{r}
+###Load Libraries 
+library(ggplot2)
+library(ggthemes)
+library(dplyr)
+library(tidyverse)
+
+#Check and Load data
+d <- ChickWeight
+summary(ChickWeight) #gives me more relevant data for what I will plot + ANOVA analyses
+
+#weight and time are both continuous so I think I have to do a linear regression model. ##Question: Is there a relationship between chick weight and time?
+
+#remember, yVar~xVar
+#Linear regression analysis
+regModel <- lm(weight~Time, data=ChickWeight) 
+summary(regModel)
+summary(regModel)$"r.squared" #mean of coefficient
+plot(ChickWeight$Time, ChickWeight$weight) #quick plot of what it could look like
+
+#Making a scatterplot with this data
+regPlot <- ggplot(data=regModel, aes(x=Time, y=weight)) +
+  geom_point(size=2) +
+  stat_smooth(method=lm, se=0.99) #lets say we want to add a linear regression, se=standard error
+regPlot + theme_few() + labs(x = "Time of Feed (min) ", y = "Weight of Chicks (oz)") 
+
+```
+
+
+______________________________________________________________________
+

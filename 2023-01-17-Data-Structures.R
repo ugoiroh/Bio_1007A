@@ -70,7 +70,7 @@ hist(runif(n=5, min=100, max=200)) # use hist function to get a histogram
 
 rnorm(n=100, mean =100, sd=30) #for rnorm you can actually set the mean and sd if you'd like.
 
-hist(rnorm(n=100, mean =100, sd=30)) #historgram ;)
+hist(rnorm(n=100, mean =100, sd=30)) #historgram 
 
 ##### Matrix data structure
 

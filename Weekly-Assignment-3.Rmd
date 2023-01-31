@@ -1,0 +1,47 @@
+---
+title: "Weekly Assignment 3"
+author: "Ugo Iroh"
+date: "2023-01-30"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+#Load packages
+library(dplyr)
+library(ggplot2)
+
+#Load and view the data
+dryadData <- read.csv(file="Data/piwowarrawdata.csv", header=T, sep=',') 
+glimpse(dryadData)
+df <- dryadData %>%
+  select(Number.of.Citations.during.2004.2005, Is.the.microarray.data.publicly.available)
+View(df)
+
+#Clean the data
+df2 <- df[!is.na(df$Number.of.Citations.during.2004.2005),]
+View(df2)
+
+#Make the boxplot
+plot <- ggplot(data=df2, aes(x=factor(Is.the.microarray.data.publicly.available), y=Number.of.Citations.during.2004.2005)) + 
+  geom_boxplot(fill="white", outlier.size = 1, outlier.shape = 5, whisklty=9) +
+  scale_x_discrete(labels=(c("Data Not Shared (n=44)","Data Shared (n=41)"))) + 
+  ylab("Data of Citations in 2004-2005") + scale_y_continuous(breaks = c(100, 200, 500,200,300,400,500, 600))
+
+plot + theme_minimal() + labs(x="") + theme(axis.line = element_line(color='black'),
+    plot.background = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank())
+
+###use outlier.shape and size to change data point shape/size in box&whisker plot
+
+```
+
+ [Original article link](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0000308#pone-0000308-g001). Data replicated from [here](https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0000308.g001).
+
+
+________________________________________________
+
+
+
+
