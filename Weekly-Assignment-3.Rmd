@@ -34,7 +34,7 @@ plot + theme_minimal() + labs(x="") + theme(axis.line = element_line(color='blac
     panel.grid.major = element_blank())
 
 ###use outlier.shape and size to change data point shape/size in box&whisker plot
-###I literally could not find a way to change the spaces between the y-values--very annoying but I got as close as I could get. 
+###I literally could not find a way to change the spaces between the y-values--very annoying but I got as close as I could get.  
 
 ```
 
