@@ -33,7 +33,7 @@ for (i in 1:nrow(my_matrix)){
   return(my_matrix)
 }
  
-my_func() #call function
+my_func() #calls function
 #my_func(x=15,y=5) ##keep running with different values
 
 ```
@@ -41,13 +41,12 @@ my_func() #call function
 
 `Use a for loop to repeat your previous functions from Weekly Assignment 2 (which simulate a data frame and extract a p-value) 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows).`
 ```{r}
-## for(variable in a sequence){#starts the for loop
+##for(variable in a sequence){#starts the for loop
 #body of the for loop
 #end of for loop
-
+#} 
 
 ##Simulate data frame
-
 myFunc <- function(mean1=10, mean2=45){
 
   Type <-c(rep("Control",25), rep("Treatment",25))
