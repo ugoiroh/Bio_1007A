@@ -34,14 +34,51 @@ for (i in 1:nrow(my_matrix)){
 }
  
 my_func() #call function
-my_func(x=15,y=5) #keep running with different values
+#my_func(x=15,y=5) ##keep running with different values
 
 ```
 
 
 `Use a for loop to repeat your previous functions from Weekly Assignment 2 (which simulate a data frame and extract a p-value) 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows).`
 ```{r}
+## for(variable in a sequence){#starts the for loop
+#body of the for loop
+#end of for loop
 
+
+##Simulate data frame
+
+myFunc <- function(mean1=10, mean2=45){
+
+  Type <-c(rep("Control",25), rep("Treatment",25))
+  Value <- c(rnorm(n=25, mean=mean1, sd=1.5), rnorm(n=25, mean=mean2, sd=2))
+  df <- data.frame(Type, Value)
+  return(df)
+}
+
+myFunc()
+#myFunc(mean1=20, mean2=50) ##run with different values
+
+
+#Extract p-value
+my_pval <- function(dataframe=myFunc()){
+ df.aov <- aov(Value ~Type, data = dataframe)
+ pval <- summary(df.aov)[[1]][["Pr(>F)"]][1]
+ return(pval)
+  
+}
+my_pval()  
+
+
+loop <- data.frame(num_rep=NA, p_val=NA)
+for(i in 1:100){
+  loop[i,1] <- i
+  df <- myFunc()
+  pVal <- my_pval(df)
+  loop[i,2] <- pVal
+}
+
+print(loop)
 
 
 

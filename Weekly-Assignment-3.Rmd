@@ -26,7 +26,7 @@ View(df2)
 plot <- ggplot(data=df2, aes(x=factor(Is.the.microarray.data.publicly.available), y=Number.of.Citations.during.2004.2005)) + 
   geom_boxplot(fill="white", outlier.size = 1, outlier.shape = 5, whisklty=9) +
   scale_x_discrete(labels=(c("Data Not Shared (n=44)","Data Shared (n=41)"))) + 
-  ylab("Data of Citations in 2004-2005") + scale_y_continuous(breaks = c(100, 200, 500,200,300,400,500, 600))
+  ylab("Data of Citations in 2004-2005") + ylim(0,500)+ scale_y_continuous(breaks = c(0,100,200,300, 400,500))
 
 plot + theme_minimal() + labs(x="") + theme(axis.line = element_line(color='black'),
     plot.background = element_blank(),
