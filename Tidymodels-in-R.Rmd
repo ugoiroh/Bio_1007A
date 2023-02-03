@@ -1,0 +1,149 @@
+---
+title: "Exploration of tidymodels in RStudio"
+author: "Ugo Iroh"
+date: "2023-02-02"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+For my Final Assignment, I decided to explore `tidymodels` because I wanted to delve deeper into data structures within the `tidyverse`. I have already been able to create a couple tables, graphs, and plots, and done analyses using the coding skills that I have developed over the duration of the course, with a particular focus on the skills that I learned in the Entering the Tidyverse lecture. With the troubleshooting help of some great R resources (linked below), I was able to undertake a data analysis project in which I analyzed a data set about sea urchins, taken from a life science journal. I was also keen on exploring the `tidyverse` because it contains a lot of helpful functional programming tools, particularly data manipulation tools, that I wanted to try my hand at.
+
+`tidymodels` is an R "meta-package" that allows users to model and analyze statistics within the design philosophy, grammar, and data structures of the `tidyverse`. It includes a core set of packages, such as `broom`, `ggplot2`, and `purr`. In this project, I mainly utilized `ggplot2`. 
+
+This HTML file will serve as a comprehensive guide as to how I completed my project, along with notes, statistical analyses, and graphs. :)
+
+----------------------------
+1. The first thing I had to do was make sure that `tidymodels` was downloaded. I hit `install.packages("tidymodels")` in the console. I had already installed the `tidyverse` in a previous lecture, so that particular step was fairly straightforward. To download, hit `install.packages("tidyverse")`in the console. I also installed `modeldata`, which contains data sets used in documentation and testing for `tidymodels`. 
+
+  * In the following example, I will be going over modeling with `tidymodels` in R. I will also be annotating with my notes when necessary. I decided to use an online data set for my project, though I recognize that built-in data sets are a bit more accessible.
+
+`Example 1`
+
+I am presented with data from [Constable (1993)](https://link.springer.com/article/10.1007/BF00349318), in which I am considering categorical data (treatment) and continuous data (width of sea urchins).
+
+**Question: Is there a statistically significant relationship between Treatment and Sea Urchin Width?** 
+
+```{r}
+### Load packages
+library(tidyverse)
+library(tidymodels)
+
+### Load and view the data
+urchin_data <- read.table(file="Data/urchins.csv", header=T, sep=',')
+View(urchin_data)
+anyNA(urchin_data) #sees if NAs are present
+
+### Clean the data
+urchin_data2 <- urchin_data[rowSums(is.na(urchin_data)) != ncol(urchin_data), ] #removes NAs in all rows 
+print(urchin_data2)
+```
+
+I also want to clean the data because the data set is divided into three columns: TREAT, IV, and SUTW. I don't entirely think this is conducive to the naming system I will be using later on. So, let's change it! 
+
+I will be using the `setNames` function to set the new names of the columns. It follows the order: `setNames(x, c("name1", "name2", "name3"))`. For more documentation, [click here](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/setNames). 
+
+```{r}
+urchin_data2 <- setNames(urchin_data2, c("Treatment", "Initial_Volume", "Sea_Urchin_Width"))  #code to change names
+```
+
+I want to categorize and represent the categorical data (Treatment) by storing it on multiple levels. The `factor` function is also extremely useful!
+
+```{r}
+urchin_data2$Treatment <- factor(urchin_data2$Treatment, levels = c("Initial", "Low", "High")) 
+```
+
+Next, I would like to visualize my data using `ggplot2` under the `tidymodels` package. I wanted to modify some components of my graph, so I looked onto the [ggplot](https://ggplot2.tidyverse.org/reference/theme.html) website, where I was able to find some interesting ways to spice up my graph. 
+
+```{r}
+ggplot(urchin_data2, aes(x=Initial_Volume , y=Sea_Urchin_Width, group=Treatment, col=Treatment)) +
+  geom_point() + geom_smooth(method=lm, se = F) + scale_colour_viridis_d(option = "C") + theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) 
+```
+
+I will be analyzing the relationship between a categorical variable (Treatments) and a continuous variable (Sea_Urchin_Width). Thus, I need to do an ANOVA analysis to see if the treatments and sea urchin width variables are statistically significant. More information on ANOVA in the Data Analysis in R lecture on January 30th. I also utilized [this website](https://www.scribbr.com/statistics/anova-in-r/), which really helped me to differentiate between one-way and two-way ANOVA analyses. 
+
+I also noticed that the slopes of the treatments are different, with two crossing slopes/lines of regression representing initial and low treatments. For this reason, I need to create some functions that allow for **two-way interactions**. I initially didn't know how to go about creating a formula for two-way interactions. There's some helpful resources that I used, such as Stack Overflow here: https://stackoverflow.com/questions/71797366/model-simplification-two-way-anova.
+
+```{r}
+#Remember: yVar~xVar
+#Sea_Urchin_Width ~ Initial_Volume * Treatment
+               #or
+#Sea_Urchin_Width ~ Initial_Volume:Treatment
+
+### Plotting the data
+urchinplot <- ggplot(urchin_data2, aes(x=Treatment , y=Sea_Urchin_Width, group=Treatment, fill=Treatment)) + 
+  geom_boxplot() + theme_bw() + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black")) + (scale_fill_manual(values = c("aquamarine", "gold", "orangered")))
+print(urchinplot) #I made a basic plot of the data set in which I compare Treatment and Sea Urchin Width
+
+### ANOVA analyses
+aovTrt<-aov(Sea_Urchin_Width ~ Treatment, data=urchin_data2)
+summary(aovTrt) #ANOVA analysis of Sea Urchin Width and Treatment. The aov function doesn't specify where the significance is, however, this is a start to doing the ANOVA analyses. 
+
+TukeyHSD(aovTrt) #The Tukey HSD test allows for all possible pairwise comparisons; it is another way of performing statistical analysis.
+
+aovTrt2 <- aov(Sea_Urchin_Width ~ Treatment*Initial_Volume, data=urchin_data2)
+summary(aovTrt2) #ANOVA analysis of Sea Urchin Width and Treatment and Initial Volume. There is an interaction between Treatment and Initial Volume based on the initial boxplot.
+
+### Linear model regression
+#I wanted to try doing linear regression models based on different interactions and to see which groups would be significant, less significant, or not significant.
+
+lmTrt <- lm(Sea_Urchin_Width ~ Initial_Volume, data=urchin_data2)
+summary(lmTrt) #not so significant
+
+lmTrt2 <- lm(Sea_Urchin_Width ~ Initial_Volume + Treatment, data=urchin_data2)
+summary(lmTrt2) #more significant
+  
+lmTrt3 <- lm(Sea_Urchin_Width ~ Initial_Volume + Treatment + Initial_Volume*Treatment, data=urchin_data2)
+summary(lmTrt3) #very significant given the Treatment variable
+
+### Using logLike
+#logLike uses the likelihood method as a measure of how well a particular model fits the data
+
+logLik(lmTrt) #158.9229 (df=3)
+logLik(lmTrt2) #173.3739 (df=5).    
+logLik(lmTrt3) #178.5939 (df=7)
+logLik(aovTrt) #165.4589 (df=4)
+logLik(aovTrt2) #178.5939 (df=7)
+```
+
+**Interpretation of Statistical Analyses**
+
+`logLik(aovTrt2)` and `logLik(lmTrt3)` have the highest (and the same) loglikelihood values, meaning that they may offer the best fit to the data set. I will perform model comparisons to visualize the data.
+
+```{r}
+### Model comparisons
+
+aovTrt2 <- aov(Sea_Urchin_Width ~ Treatment*Initial_Volume, data=urchin_data2)
+par(mfrow=c(2,2)) #The mfrow() parameter allows to split the screen in several panels
+plot(aovTrt2)
+par(mfrow=c(1,1)) #I am using the par() function to create multiple graphs at once 
+print(plot(aovTrt2))
+
+lmTrt3 <- lm(Sea_Urchin_Width ~ Initial_Volume + Treatment + Initial_Volume*Treatment, data=urchin_data2)
+par(mfrow=c(2,2)) #The mfrow() parameter allows to split the screen in several panels
+plot(lmTrt3)
+par(mfrow=c(1,1)) #I am using the par() function to create multiple graphs at once 
+print(plot(lmTrt3))
+```
+
+**Conclusion and Interpretation of Plots**
+
+Given data from Constable (1993), I wanted to see if there was a statistically significant relationship between sea urchin width and treatment over time. I initially loaded the data into RStudio, cleaned the data of any potential NAs, and rearranged the data set to my liking. Because I was looking at the relationship between both continuous and categorical variables, performing an ANOVA analysis seemed to be my best bet. However, this did not tell me exactly *where* significance was within the groups, so I completed Tukey's HSD test. Here, I found that Treatment held the most significance. I then began ANOVA analyses and played around with some interactions and variables within the data set, where I found that some variable groups held more significance than others.  
+
+I also utilized the `logLike()` function to determine which pair group had the best fit for a model. I concluded that the two highest loglikelihood variables had the Treatment variable. I created and explored Residuals vs. Leverage plots to compare the groups and identify influential observations in the regression model because I was curious to see how the regression model would change if I removed observations in the data set. I discovered that I actually could not do my experiment because when looking at `Sea_Urchin_Width ~ Treatment*Initial_Volume`, there were no observations that fell outside of Cook's distance. This shows me that there are no influential observations or points in the regression model. It also shows that if I removed some points on the data set, they will not have a large impact on the regression.  
+
+I found the same thing when I looked at `Sea_Urchin_Width ~ Initial_Volume + Treatment + Initial_Volume*Treatment`; there were no influential points on the graph. For this reason, the slope of the regression line will not be affected if I removed the points from my data set.
+
+___________________________________________________
+
+
+
+
+
+
+
+
+
+
+
