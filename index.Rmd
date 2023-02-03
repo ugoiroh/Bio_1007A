@@ -43,4 +43,7 @@ Hello! My name is Ugo and I am taking a course called Reproducibility in R. I am
 
 [Weekly Assignmnet 4](Weekly-Assignment-4.html)
 
+# Final Assignment 
+
+[Final Assignment](Tidymodels-in-R.html)
 
